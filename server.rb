@@ -28,6 +28,10 @@ class GHAapp < Sinatra::Application
     set :logging, Logger::DEBUG
   end
 
+  # Configure the homepage
+  get '/' do
+    'Nothing here, you don\'t need to visit this url manually.'
+  end
 
   # Executed before each request to the `/event_handler` route
   before '/event_handler' do
