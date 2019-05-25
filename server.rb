@@ -132,7 +132,8 @@ class GHAapp < Sinatra::Application
       their_signature_header = request.env['HTTP_X_HUB_SIGNATURE'] || 'sha1='
       method, their_digest = their_signature_header.split('=')
       our_digest = OpenSSL::HMAC.hexdigest(method, WEBHOOK_SECRET, @payload_raw)
-      logger.info(our_digest, their_digest)
+      logger.info(our_digest)
+      logger.info(their_digest)
       halt 401 unless their_digest == our_digest
 
       # The X-GITHUB-EVENT header provides the name of the event.
